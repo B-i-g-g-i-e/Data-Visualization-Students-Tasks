@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "a29d840ea016b9b3f68b",
+  "position": {
+    "x": 535.96457938013918,
+    "y": 132.77672359266288,
+    "z": 7000,
+    "height": 147.34977862112586,
+    "width": 280.12650221378874,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Student_performance_data"
+                        }
+                      },
+                      "Property": "StudyTimeWeekly"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(Student_performance_data.StudyTimeWeekly)",
+              "nativeQueryRef": "Average of StudyTimeWeekly"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Student_performance_data"
+                      }
+                    },
+                    "Property": "StudyTimeWeekly"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

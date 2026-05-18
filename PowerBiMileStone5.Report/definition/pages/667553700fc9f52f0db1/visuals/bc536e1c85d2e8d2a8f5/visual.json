@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "bc536e1c85d2e8d2a8f5",
+  "position": {
+    "x": 22.669196710942444,
+    "y": 378.899430740038,
+    "z": 1000,
+    "height": 278.50727387729285,
+    "width": 280.12650221378874,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Student_performance_data"
+                    }
+                  },
+                  "Property": "Risk Tier"
+                }
+              },
+              "queryRef": "Student_performance_data.Risk Tier",
+              "nativeQueryRef": "Risk Tier"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Student_performance_data"
+                    }
+                  },
+                  "Property": "GradeClass"
+                }
+              },
+              "queryRef": "Sum(Student_performance_data.GradeClass)",
+              "nativeQueryRef": "GradeClass",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Student_performance_data"
+                    }
+                  },
+                  "Property": "GPA"
+                }
+              },
+              "queryRef": "Sum(Student_performance_data.GPA)",
+              "nativeQueryRef": "GPA"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

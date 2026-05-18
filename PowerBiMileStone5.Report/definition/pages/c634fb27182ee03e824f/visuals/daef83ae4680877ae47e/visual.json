@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "daef83ae4680877ae47e",
+  "position": {
+    "x": 76.103731815306773,
+    "y": 370.80328905755852,
+    "z": 0,
+    "height": 281.74573055028463,
+    "width": 278.50727387729285,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "gauge",
+    "query": {
+      "queryState": {
+        "MinValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Student_performance_data"
+                    }
+                  },
+                  "Property": "% GPA>3.0"
+                }
+              },
+              "queryRef": "Student_performance_data.% GPA>3.0",
+              "nativeQueryRef": "% GPA>3.0"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Student_performance_data"
+                    }
+                  },
+                  "Property": "TargetGPA"
+                }
+              },
+              "queryRef": "Student_performance_data.TargetGPA",
+              "nativeQueryRef": "TargetGPA"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Student_performance_data"
+                  }
+                },
+                "Property": "TargetGPA"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "target": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

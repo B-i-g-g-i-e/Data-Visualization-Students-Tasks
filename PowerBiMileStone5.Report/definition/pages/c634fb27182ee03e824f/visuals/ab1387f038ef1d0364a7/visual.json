@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "ab1387f038ef1d0364a7",
+  "position": {
+    "x": 978.01391524351675,
+    "y": 21.049968374446554,
+    "z": 3000,
+    "height": 239.64579380139153,
+    "width": 276.88804554079695,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "gauge",
+    "query": {
+      "queryState": {
+        "TargetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Student_performance_data"
+                    }
+                  },
+                  "Property": "TutoringTarget"
+                }
+              },
+              "queryRef": "Student_performance_data.TutoringTarget",
+              "nativeQueryRef": "TutoringTarget"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Student_performance_data"
+                        }
+                      },
+                      "Property": "Tutoring"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Sum(Student_performance_data.Tutoring)",
+              "nativeQueryRef": "Average of Tutoring"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Student_performance_data"
+                      }
+                    },
+                    "Property": "Tutoring"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "target": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

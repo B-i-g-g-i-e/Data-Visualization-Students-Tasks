@@ -1,0 +1,220 @@
+table Student_performance_data
+	lineageTag: b179b9c4-ec03-408f-9cc2-55c71e255e65
+
+	measure TargetGPA = 3.0
+		lineageTag: 0622df14-a45d-4967-b605-5e5562e4a771
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% GPA>3.0' = ```
+			
+			DIVIDE(
+			    CALCULATE(COUNT(Student_performance_data[StudentID]), Student_performance_data[GPA] >= 3.0),
+			    COUNT(Student_performance_data[StudentID]),
+			    0
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a1a9e950-3530-4f77-b0a3-4712eed3b6b7
+
+	measure StudyTimeWeeklyTarget = 10.0
+		lineageTag: 288f04ef-9e49-4325-bd4b-473202066110
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ParentaSupportTarget = 3
+		formatString: 0
+		lineageTag: 9f43a3a8-2194-401c-8ea1-0e2e5ba644c4
+
+	measure AbsencesTarget = 10
+		formatString: 0
+		lineageTag: 94a87646-aa9b-4bf3-aa61-d535384f102e
+
+	measure TutoringTarget = 0.5
+		lineageTag: 54945b55-89e6-4d3a-a58b-d46f6d098f03
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'GPA Band' = SWITCH(TRUE(), [GPA]<0.5,"0–0.5", [GPA]<1,"0.5–1", [GPA]<1.5,"1–1.5", [GPA]<2,"1.5–2", [GPA]<2.5,"2–2.5", [GPA]<3,"2.5–3", [GPA]<3.5,"3–3.5", "3.5–4")
+		lineageTag: 5c0284e3-ef89-4532-a9cd-20660bc31900
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk Tier' = IF([GPA]<2,"At Risk", IF([GPA]<3,"Average","Good"))
+		lineageTag: 45abf5f5-616d-4d61-9dc6-4367aeef3718
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Absence Band' = IF([Absences]>=10,"Low Attendance","High Attendance")
+		lineageTag: 37c2667b-c3dc-4e32-975b-0c740c1180f7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalActivities = ```
+			
+			    [Extracurricular] 
+			    + [Sports] 
+			    + [Music] 
+			    + [Volunteering]
+			```
+		formatString: 0
+		lineageTag: ab10e3a6-87a7-4296-a25f-e3d2750d8aef
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudentID
+		dataType: int64
+		formatString: 0
+		lineageTag: 94facfcc-0266-47ef-b4eb-17c0511808e7
+		summarizeBy: count
+		sourceColumn: StudentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e931058-f0ef-45fe-9c60-b2f7f7c4181b
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: int64
+		formatString: 0
+		lineageTag: d43a5f2c-84e8-4df1-b125-1fcd605159b2
+		summarizeBy: sum
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ethnicity
+		dataType: int64
+		formatString: 0
+		lineageTag: 6cc2acd5-edde-4af4-8878-24e111b31ab5
+		summarizeBy: sum
+		sourceColumn: Ethnicity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentalEducation
+		dataType: int64
+		formatString: 0
+		lineageTag: c5f31083-61a8-4129-b0b0-9545078d069e
+		summarizeBy: sum
+		sourceColumn: ParentalEducation
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudyTimeWeekly
+		dataType: double
+		lineageTag: 58533fe4-c880-4448-80cc-b3e9a2ee2799
+		summarizeBy: sum
+		sourceColumn: StudyTimeWeekly
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Absences
+		dataType: int64
+		formatString: 0
+		lineageTag: b802433b-b582-4e3b-ae04-257217517b28
+		summarizeBy: sum
+		sourceColumn: Absences
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tutoring
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c7288bb-4e18-4eda-9240-eb110926fb0a
+		summarizeBy: sum
+		sourceColumn: Tutoring
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentalSupport
+		dataType: int64
+		formatString: 0
+		lineageTag: dcf67afd-94b9-49f2-8b4e-21ef19a735b7
+		summarizeBy: sum
+		sourceColumn: ParentalSupport
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extracurricular
+		dataType: int64
+		formatString: 0
+		lineageTag: 02b24c3b-f89c-45ac-86eb-6f4879bfee25
+		summarizeBy: sum
+		sourceColumn: Extracurricular
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sports
+		dataType: int64
+		formatString: 0
+		lineageTag: 990f4444-6ddf-4cdf-bf6b-956fe308bef3
+		summarizeBy: sum
+		sourceColumn: Sports
+
+		annotation SummarizationSetBy = Automatic
+
+	column Music
+		dataType: int64
+		formatString: 0
+		lineageTag: e73e1e8d-b2e6-4129-8899-847dc54e0c52
+		summarizeBy: sum
+		sourceColumn: Music
+
+		annotation SummarizationSetBy = Automatic
+
+	column Volunteering
+		dataType: int64
+		formatString: 0
+		lineageTag: 5971246f-8501-4d31-8424-fa31bce92f9f
+		summarizeBy: sum
+		sourceColumn: Volunteering
+
+		annotation SummarizationSetBy = Automatic
+
+	column GPA
+		dataType: double
+		lineageTag: 506395bf-4ed8-4b4e-9ef6-1be6bdbe907f
+		summarizeBy: sum
+		sourceColumn: GPA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GradeClass
+		dataType: int64
+		formatString: 0
+		lineageTag: 8eece161-d0a4-41ce-ae1c-4caa0cfc2799
+		summarizeBy: sum
+		sourceColumn: GradeClass
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Student_performance_data = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\liznj\Downloads\Student_performance_data.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"StudentID", Int64.Type}, {"Age", Int64.Type}, {"Gender", Int64.Type}, {"Ethnicity", Int64.Type}, {"ParentalEducation", Int64.Type}, {"StudyTimeWeekly", type number}, {"Absences", Int64.Type}, {"Tutoring", Int64.Type}, {"ParentalSupport", Int64.Type}, {"Extracurricular", Int64.Type}, {"Sports", Int64.Type}, {"Music", Int64.Type}, {"Volunteering", Int64.Type}, {"GPA", type number}, {"GradeClass", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
